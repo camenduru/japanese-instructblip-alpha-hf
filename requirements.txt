@@ -1,0 +1,7 @@
+transformers
+sentencepiece
+einops
+gradio
+accelerate>=0.12.0
+bitsandbytes>=0.31.5
+scipy
