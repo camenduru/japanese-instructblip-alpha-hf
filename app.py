@@ -20,11 +20,9 @@ def build_prompt(prompt="", sep="\n\n### "):
     return p
 
 # load model
-ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
-assert ACCESS_TOKEN is not None
-model_id = os.environ.get("MODEL_FOR_JIB", "stabilityai/japanese-instructblip-alpha")
-model = AutoModelForVision2Seq.from_pretrained(model_id, trust_remote_code=True, torch_dtype=torch.float16, variant="fp16", use_auth_token=ACCESS_TOKEN)
-processor = BlipImageProcessor.from_pretrained(model_id, use_auth_token=ACCESS_TOKEN)
+model_id = "4bit/japanese-instructblip-alpha"
+model = AutoModelForVision2Seq.from_pretrained(model_id, trust_remote_code=True, torch_dtype=torch.float16, variant="fp16")
+processor = BlipImageProcessor.from_pretrained(model_id)
 tokenizer = LlamaTokenizer.from_pretrained("novelai/nerdstash-tokenizer-v1", additional_special_tokens=['▁▁'], padding_side="left")
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model.to(device)
