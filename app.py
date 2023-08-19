@@ -23,7 +23,7 @@ def build_prompt(prompt="", sep="\n\n### "):
 model_id = "4bit/japanese-instructblip-alpha"
 model = AutoModelForVision2Seq.from_pretrained(model_id, trust_remote_code=True, torch_dtype=torch.float16, variant="fp16")
 processor = BlipImageProcessor.from_pretrained(model_id)
-tokenizer = LlamaTokenizer.from_pretrained("novelai/nerdstash-tokenizer-v1", additional_special_tokens=['▁▁'], padding_side="left")
+tokenizer = LlamaTokenizer.from_pretrained("4bit/japanese-instructblip-alpha", additional_special_tokens=['▁▁'], padding_side="left")
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model.to(device)
 
